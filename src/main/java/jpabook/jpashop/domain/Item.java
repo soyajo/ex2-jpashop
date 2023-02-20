@@ -1,23 +1,23 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Item {
+// 조인전략
+@Inheritance(strategy = InheritanceType.JOINED)
+// 단일테이블전략
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+// 구현 클래스마다 테이블 전략
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "DTYPE")
+public abstract class Item {
+
     @Id @GeneratedValue
-    @Column(name = "ITEM_ID")
     private Long id;
 
     private String name;
 
     private int price;
-
-    private int stockQuantity;
-
-    @ManyToMany(mappedBy = "items")
-    private List<Category> categories = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -41,13 +41,5 @@ public class Item {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
     }
 }
