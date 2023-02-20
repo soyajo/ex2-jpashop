@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +13,28 @@ public class Member {
     private Long id;
 
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
 
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
+    @Embedded
+    private Period workPeriod;
 
-    public List<Order> getOrders() {
-        return orders;
+    @Embedded
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(
+                    name = "city",
+                    column = @Column(name = "WORK_CTIY")),
+            @AttributeOverride(
+                    name = "street",
+                    column = @Column(name = "WORK_STREET")),
+            @AttributeOverride(
+                    name = "zipcode",
+                    column = @Column(name = "WORK_ZIPCODE"))
+    })
+    private Address workAddress;
+
+    public Member() {
     }
 
     public Long getId() {
@@ -39,27 +53,19 @@ public class Member {
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public Period getWorkPeriod() {
+        return workPeriod;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setWorkPeriod(Period workPeriod) {
+        this.workPeriod = workPeriod;
     }
 
-    public String getStreet() {
-        return street;
+    public Address getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
     }
 }

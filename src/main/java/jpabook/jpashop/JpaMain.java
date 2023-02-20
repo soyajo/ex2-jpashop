@@ -1,8 +1,6 @@
 package jpabook.jpashop;
 
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,13 +15,13 @@ public class JpaMain {
         tx.begin();
         try {
 
-            Order order = new Order();
+//            Order order = new Order();
 //            order.addOrderItem(new OrderItem());
-            em.persist(order);
+//            em.persist(order);
 
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            em.persist(orderItem);
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setOrder(order);
+//            em.persist(orderItem);
 
 
             // 관계형 디비에 맞춘 설계
@@ -32,6 +30,12 @@ public class JpaMain {
 //            Member member = em.find(Member.class, memberId);
 //            Member findMember = order.getMember();
 
+
+            Member member = new Member();
+            member.setName("hello");
+            member.setHomeAddress(new Address("ctiy", "street", "zipcode"));
+            member.setWorkPeriod(new Period());
+            em.persist(member);
 
             tx.commit();
 
