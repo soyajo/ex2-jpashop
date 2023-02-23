@@ -31,11 +31,23 @@ public class JpaMain {
 //            Member findMember = order.getMember();
 
 
+//            Member member = new Member();
+//            member.setName("hello");
+//            member.setHomeAddress(new Address("ctiy", "street", "zipcode"));
+//            member.setWorkPeriod(new Period());
+//            em.persist(member);
+
+
+            Address address = new Address("city", "street", "zipcode");
+
             Member member = new Member();
-            member.setName("hello");
-            member.setHomeAddress(new Address("ctiy", "street", "zipcode"));
-            member.setWorkPeriod(new Period());
+            member.setName("member1");
+            member.setHomeAddress(address);
             em.persist(member);
+
+            Address newAddress = new Address(address.getCity(),address.getStreet(), address.getZipcode());
+            member.setHomeAddress(newAddress);
+
 
             tx.commit();
 
