@@ -52,7 +52,7 @@ public class JpaMain {
 
             Member member = new Member();
             member.setName("member1");
-            member.setHomeAddress(new Address("homeCity", "street", "zipcode"));
+            member.setAddress(new Address("homeCity", "street", "zipcode"));
 
             member.getFavoriteFoods().add("치킨");
             member.getFavoriteFoods().add("족발");
@@ -79,9 +79,9 @@ public class JpaMain {
 //            }
 
             // homeCity -> newCity
-            Address a = findMember.getHomeAddress();
-            findMember.setHomeAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
-            System.out.println("findMember.getHomeAddress = " + findMember.getHomeAddress().getCity());
+            Address a = findMember.getAddress();
+            findMember.setAddress(new Address("newCity", a.getStreet(), a.getZipcode()));
+            System.out.println("findMember.getHomeAddress = " + findMember.getAddress().getCity());
 
             // 치킨 -> 한식
             findMember.getFavoriteFoods().remove("치킨");

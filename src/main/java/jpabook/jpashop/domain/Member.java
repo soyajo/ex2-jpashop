@@ -21,7 +21,8 @@ public class Member {
     private Period workPeriod;
 
     @Embedded
-    private Address homeAddress;
+    private Address address;
+
 
     @ElementCollection
     @CollectionTable(name = "FAVORITE_FOOD", joinColumns =
@@ -29,6 +30,8 @@ public class Member {
     )
     @Column(name = "FOOD_NAME")
     private Set<String> favoriteFoods = new HashSet<>();
+
+
 
 //    @ElementCollection
 //    @CollectionTable(name = "ADDRESS", joinColumns =
@@ -105,11 +108,11 @@ public class Member {
         this.workPeriod = workPeriod;
     }
 
-    public Address getHomeAddress() {
-        return homeAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
