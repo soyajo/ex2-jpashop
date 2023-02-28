@@ -19,6 +19,15 @@ public abstract class Item {
 
     private int price;
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
